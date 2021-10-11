@@ -21,3 +21,9 @@ function hideNoColorChange () {
 
 }
 
+<<<<<<< HEAD
+=======
+slkjdlksad
+
+JOHAN
+>>>>>>> 7a5c9be25d823b13716c3674cf21049d1380967b
