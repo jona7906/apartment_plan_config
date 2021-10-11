@@ -20,7 +20,3 @@ function hideNoColorChange() {
     });
 }
 
-
-function mouseOver (); {
-    
-}
