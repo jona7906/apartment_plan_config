@@ -10,7 +10,7 @@ async function start() {
     hideNoColorChange()
 }
 
-
+let elementToPaint = []
 
 
 
