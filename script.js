@@ -20,4 +20,5 @@ function hideNoColorChange() {
     });
 }
 
-hjkhjkhjkhjkhjkhjkhiuphipughouygu;
+const bingo;
+let bango;
