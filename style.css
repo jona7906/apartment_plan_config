@@ -1,3 +1,9 @@
+h1,
+p,
+figcaption {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 #configurator {
   display: grid;
   grid-template-areas:
@@ -13,7 +19,6 @@ section {
 
 #product-preview {
   grid-area: product;
-  border-radius: 1em;
   position: relative;
   transition: opacity ease-in 0.5s;
 }
@@ -37,7 +42,6 @@ section {
 #options {
   grid-area: options;
   box-shadow: 3px 3px 8px #ddd;
-  border-radius: 1em;
   padding: 1em;
   display: flex;
   flex-direction: column;
@@ -80,6 +84,7 @@ section {
 
 #selected {
   grid-area: features;
+  box-shadow: 3px 3px 8px #ddd;
 }
 
 #selected ul {

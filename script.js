@@ -16,8 +16,3 @@ function manipulateSVG() {
     element.style.opacity = 0;
   });
 }
-
-function mouseOver(event) {
-  event.target.style.fill = "green";
-  console.log("event", event.target.id);
-}
