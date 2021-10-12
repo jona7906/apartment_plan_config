@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98.8 14.1">
+  <g id="Lag_2" data-name="Lag 2">
+    <g id="Lag_1-2" data-name="Lag 1">
+      <g id="window">
+        <g>
+          <rect x="1.5" y="1.5" width="47.9" height="11.1" fill="#fff"/>
+          <path d="M50.9,14.1H0V0H50.9ZM3,11.1H47.9V3H3v8.1Z" fill="#010101"/>
+        </g>
+        <g>
+          <rect x="49.4" y="1.5" width="47.9" height="11.1" fill="#fff"/>
+          <path d="M98.8,14.1H47.9V0H98.8Zm-47.9-3H95.8V3H50.9v8.1Z" fill="#010101"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
