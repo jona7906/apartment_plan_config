@@ -41,6 +41,12 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow: scroll;
+  height: 40vw;
+}
+
+#options p {
+  text-align: center;
 }
 
 #options .option {
