@@ -4,6 +4,7 @@
     "product options"
     "features features";
   gap: 1em;
+  margin: 60px;
 }
 
 section {
@@ -55,6 +56,7 @@ section {
   align-items: center;
   gap: 1em;
   color: #aaa;
+  transition: 0.3s;
 }
 
 #options .option:hover {
@@ -94,10 +96,10 @@ section {
 
 /* Animation classes */
 
-.animate-feature-in {
-  /* TODO: Create animation for adding a feature */
-}
+/* .animate-feature-in { */
+/* TODO: Create animation for adding a feature */
+/* } */
 
-.animate-feature-out {
-  /* TODO: Create animation for removing a feature */
-}
+/* .animate-feature-out { */
+/* TODO: Create animation for removing a feature */
+/* } */
