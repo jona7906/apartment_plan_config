@@ -22,6 +22,3 @@ function mouseOver(event) {
   event.target.style.fill = "green";
   console.log("event", event.target.id);
 }
-
-const bingo;
-let bango;
