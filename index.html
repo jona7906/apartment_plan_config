@@ -4,11 +4,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>room_config</title>
+    <title>Apartment Configurator</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section></section>
+    <h1>Apartment Configurator</h1>
+    <p>
+      Welcome to the apartment-configurator!<br />
+      Please select between the different options, and place them in the apartment.
+    </p>
+
+    <div id="configurator">
+      <section></section>
+      <div id="product-preview">
+        <!-- TODO: add all feature image layers -->
+      </div>
+      <div id="options">
+        Available features
+        <figure class="option" data-feature="couch">
+          <!-- indsæt billede -->
+          <figcaption>Couch</figcaption>
+        </figure>
+        <figure class="option" data-feature="tv">
+          <!-- indsæt billede -->
+          <figcaption>TV</figcaption>
+        </figure>
+        <figure class="option" data-feature="bed">
+          <!-- indsæt billede -->
+          <figcaption>Bed</figcaption>
+        </figure>
+        <figure class="option" data-feature="window">
+          <!-- indsæt billede -->
+          <figcaption>Window</figcaption>
+        </figure>
+        <figure class="option" data-feature="table">
+          <!-- indsæt billede -->
+          <figcaption>Table</figcaption>
+        </figure>
+        <figure class="option" data-feature="stove">
+          <!-- indsæt billede -->
+          <figcaption>Stove</figcaption>
+        </figure>
+        <figure class="option" data-feature="kitchenSink">
+          <!-- indsæt billede -->
+          <figcaption>Kitchen sink</figcaption>
+        </figure>
+        <figure class="option" data-feature="bigCarpet">
+          <!-- indsæt billede -->
+          <figcaption>Big carpet</figcaption>
+        </figure>
+        <figure class="option" data-feature="smallCarpet">
+          <!-- indsæt billede -->
+          <figcaption>Small carpet</figcaption>
+        </figure>
+      </div>
+      <div id="selected">
+        Selected features
+        <ul>
+          <!-- featureElements are added here! -->
+        </ul>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
