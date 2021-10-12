@@ -12,16 +12,7 @@ let elementsToPaint = [];
 
 function manipulateSVG() {
   //hide unchangeable elements
-
-  document.querySelectorAll(`svg > g:not(#background})`).forEach((element) => {
-    element.addEventListener("mouseover", mouseOver);
+  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+    element.style.opacity = 0;
   });
 }
-
-function mouseOver(event) {
-  event.target.style.fill = "green";
-  console.log("event", event.target.id);
-}
-
-const bingo;
-let bango;
