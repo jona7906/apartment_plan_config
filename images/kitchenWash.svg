@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182.24 65.7">
+  <g id="Lag_2" data-name="Lag 2">
+    <g id="Lag_1-2" data-name="Lag 1">
+      <g id="washKitch">
+        <rect id="plate-1" x="0.5" y="0.5" width="181.24" height="64.7" fill="none" stroke="#2a6b7f" stroke-miterlimit="10"/>
+        <path d="M26.46,18.1V38.2A10.68,10.68,0,0,0,37,49H66.51A10.67,10.67,0,0,0,77,38.2V18.1A10.67,10.67,0,0,0,66.51,7.3H37a10.61,10.61,0,0,0-10.5,10.8Z" fill="#c6cdc9"/>
+        <path d="M51.74,17.9h0a3.61,3.61,0,0,0,3.59-3.6V.5H48.14V14.2a3.64,3.64,0,0,0,3.6,3.7Z" fill="#6f7073"/>
+        <ellipse cx="51.74" cy="28.1" rx="6.12" ry="6.3" fill="#010202"/>
+      </g>
+    </g>
+  </g>
+</svg>
