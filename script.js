@@ -21,19 +21,52 @@ async function start() {
   document.querySelector("section").innerHTML = svgData;
   manipulateSVG();
   document.querySelectorAll(".option").forEach((option) => option.addEventListener("click", toggleOption));
+  document.querySelectorAll("[data-feature]").forEach((option) => {
+    option.addEventListener("mouseover", optionHover);
+  });
 }
 
 let elementsToPaint = [];
 
 function manipulateSVG() {
   //hide unchangeable elements
+  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
+    element.style.opacity = 0;
+  });
+}
+
+function optionHover(event) {
+  console.log(this);
+  console.log(event);
+  let hoveredOption = this.dataset.feature;
+
+  document.querySelectorAll(`.${hoveredOption}`).forEach((element) => {
+    element.style.opacity = 0.5;
+  });
+  this.removeEventListener("mouseover", optionHover);
+  this.addEventListener("mouseout", notHovering);
+
+  /* this.addEventListener("mouseout", ()=>{}); */
+  // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+  //   element.style.opacity = 0;
   // document.querySelectorAll("#sofa-2 path").forEach((element) => {
   //   element.style.fill = "green";
   // });
+  /* document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
+    element.style.opacity = 0;
+  }); */
+}
+
+function notHovering() {
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
     // element.addEventListener("mousedown", showPopup());
   });
+<<<<<<< HEAD
+=======
+  this.addEventListener("mouseover", optionHover);
+  this.removeEventListener("mouseout", notHovering);
+>>>>>>> ebafe5143e95b75af56c41d1f01f39ce2b17358a
 }
 
 // function showPopup() {
