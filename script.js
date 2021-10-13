@@ -58,6 +58,8 @@ function optionHover(event) {
 }
 
 function notHovering() {
+  this.removeEventListener("mouseout", notHovering);
+  this.addEventListener("mouseover", optionHover);
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
     // element.addEventListener("mousedown", showPopup());
@@ -107,7 +109,6 @@ function toggleOption(event) {
           transformOrigin: "top left",
           transform: `
         translate(${deltaX}px, ${deltaY}px)
-        scale(${deltaW}, ${deltaH})
       `,
         },
         {
@@ -159,7 +160,6 @@ function toggleOption(event) {
           transformOrigin: "top left",
           transform: `
         translate(${deltaX}px, ${deltaY}px)
-        scale(${deltaW}, ${deltaH})
       `,
         },
         {
