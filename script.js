@@ -30,7 +30,7 @@ let elementsToPaint = [];
 
 function manipulateSVG() {
   //hide unchangeable elements
-  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
   });
 }
@@ -39,10 +39,12 @@ function optionHover(event) {
   console.log(this);
   console.log(event);
   let hoveredOption = this.dataset.feature;
-  this.removeEventListener("mouseover", optionHover);
+
   document.querySelectorAll(`.${hoveredOption}`).forEach((element) => {
     element.style.opacity = 0.5;
   });
+  this.removeEventListener("mouseover", optionHover);
+  this.addEventListener("mouseout", notHovering);
 
   /* this.addEventListener("mouseout", ()=>{}); */
   // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
@@ -50,9 +52,17 @@ function optionHover(event) {
   // document.querySelectorAll("#sofa-2 path").forEach((element) => {
   //   element.style.fill = "green";
   // });
+  /* document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
+    element.style.opacity = 0;
+  }); */
+}
+
+function notHovering() {
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
   });
+  this.addEventListener("mouseover", optionHover);
+  this.removeEventListener("mouseout", notHovering);
 }
 
 function toggleOption(event) {
