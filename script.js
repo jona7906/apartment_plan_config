@@ -62,11 +62,6 @@ function notHovering() {
     element.style.opacity = 0;
     // element.addEventListener("mousedown", showPopup());
   });
-<<<<<<< HEAD
-=======
-  this.addEventListener("mouseover", optionHover);
-  this.removeEventListener("mouseout", notHovering);
->>>>>>> ebafe5143e95b75af56c41d1f01f39ce2b17358a
 }
 
 // function showPopup() {
