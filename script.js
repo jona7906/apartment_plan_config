@@ -21,33 +21,33 @@ async function start() {
   document.querySelector("section").innerHTML = svgData;
   manipulateSVG();
   document.querySelectorAll(".option").forEach((option) => option.addEventListener("click", toggleOption));
+  document.querySelectorAll("[data-feature]").forEach((option) => {
+    option.addEventListener("mouseover", optionHover);
+  });
 }
 
 let elementsToPaint = [];
 
 function manipulateSVG() {
   //hide unchangeable elements
-  document.querySelectorAll("#sofa-2 path").forEach((element) => {
-    element.style.fill = "green";
-  });
-<<<<<<< HEAD
-
-  document.querySelectorAll(".option").forEach((option) => {
-    option.addEventListener("mouseover", optionHover);
+  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+    element.style.opacity = 0;
   });
 }
 
 function optionHover(event) {
   console.log(this);
   console.log(event);
-  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
-    element.style.opacity = 1;
+  let hoveredOption = this.dataset.feature;
+  this.removeEventListener("mouseover", optionHover);
+  document.querySelectorAll(`.${hoveredOption}`).forEach((element) => {
+    element.style.opacity = 0.5;
   });
-=======
+
+  /* this.addEventListener("mouseout", ()=>{}); */
   // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
   //   element.style.opacity = 0;
   // });
->>>>>>> b46db07c1cb3f77da97e69ddc4d1a4c2bd3f5cff
 }
 
 function toggleOption(event) {
