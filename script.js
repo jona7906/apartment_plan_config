@@ -12,9 +12,10 @@ let elementsToPaint = [];
 
 function manipulateSVG() {
   //hide unchangeable elements
-  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
-    element.style.opacity = 0;
+  document.querySelectorAll("#sofa-2 path").forEach((element) => {
+    element.style.fill = "green";
   });
+<<<<<<< HEAD
 
   document.querySelectorAll(".option").forEach((option) => {
     option.addEventListener("mouseover", optionHover);
@@ -27,4 +28,9 @@ function optionHover(event) {
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
     element.style.opacity = 1;
   });
+=======
+  // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+  //   element.style.opacity = 0;
+  // });
+>>>>>>> b46db07c1cb3f77da97e69ddc4d1a4c2bd3f5cff
 }
