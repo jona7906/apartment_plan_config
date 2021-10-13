@@ -32,9 +32,13 @@ function manipulateSVG() {
   // });
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
+    // element.addEventListener("mousedown", showPopup());
   });
-
 }
+
+// function showPopup() {
+//   document.querySelector("#popup").offset({ top: pageY, left: pageX }).fadeIn();
+// }
 
 function toggleOption(event) {
   const target = event.currentTarget;
