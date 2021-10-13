@@ -97,8 +97,6 @@ function toggleOption(event) {
 
     // });
 
-    // TODO: More code
-
     // Else - if the feature (became) turned off:
     // - no longer mark target as chosen
     // - hide the feature-layer(s) in the #product-preview
@@ -143,7 +141,6 @@ function toggleOption(event) {
       }
     );
     existingElement.remove();
-    // TODO: More code
   }
 }
 
