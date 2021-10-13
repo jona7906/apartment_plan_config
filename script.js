@@ -59,10 +59,13 @@ function optionHover(event) {
 function notHovering() {
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
+    // element.addEventListener("mousedown", showPopup());
   });
-  this.addEventListener("mouseover", optionHover);
-  this.removeEventListener("mouseout", notHovering);
 }
+
+// function showPopup() {
+//   document.querySelector("#popup").offset({ top: pageY, left: pageX }).fadeIn();
+// }
 
 function toggleOption(event) {
   const target = event.currentTarget;
@@ -113,7 +116,6 @@ function toggleOption(event) {
     );
 
 
-
   } else {
     // feature removed
     console.log(`Feature ${feature} is turned off!`);
@@ -152,7 +154,6 @@ function toggleOption(event) {
       }
     );
     existingElement.remove();
-
   }
 }
 

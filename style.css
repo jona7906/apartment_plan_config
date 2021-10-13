@@ -99,6 +99,13 @@ section {
   width: 3em;
 }
 
+#popup {
+  position: absolute;
+  display: none;
+  z-index: 100;
+  background-color: #aaa;
+}
+
 /* Animation classes */
 
 /* .animate-feature-in { */
