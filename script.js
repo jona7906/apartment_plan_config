@@ -12,12 +12,10 @@ let elementsToPaint = [];
 
 function manipulateSVG() {
   //hide unchangeable elements
-  document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
-    element.style.opacity = 0;
+  document.querySelectorAll("#sofa-2 path").forEach((element) => {
+    element.style.fill = "green";
   });
-}
-
-function mouseOver(event) {
-  event.target.style.fill = "green";
-  console.log("event", event.target.id);
+  // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+  //   element.style.opacity = 0;
+  // });
 }
