@@ -1,16 +1,6 @@
 "use strict";
 
-const features = {
-  couch: false,
-  tv: false,
-  bed: false,
-  window: false,
-  table: false,
-  stove: false,
-  kitchenSink: false,
-  bigCarpet: false,
-  smallCarpet: false,
-};
+const nonConfigurableFeatures = [ 'bed', 'window', 'tv', 'stove', 'kitchenWash' ]
 
 document.addEventListener("DOMContentLoaded", start);
 
@@ -36,7 +26,7 @@ function manipulateSVG() {
 }
 
 function addEventListeners () {
-  document.querySelectorAll("[data-feature]").forEach((element) => {
+  document.querySelectorAll("#options [data-feature]").forEach((element) => {
     element.addEventListener("mouseover", optionHover);
     element.addEventListener("mouseout", notHovering);
     element.addEventListener("click", toggleFeature);
@@ -44,7 +34,7 @@ function addEventListeners () {
 }
 
 function removeEventListeners () {
-  document.querySelectorAll("[data-feature]").forEach((element) => {
+  document.querySelectorAll("#options [data-feature]").forEach((element) => {
     element.removeEventListener("mouseover", optionHover);
     element.removeEventListener("mouseout", notHovering);
     element.removeEventListener("click", toggleFeature);
@@ -55,78 +45,20 @@ function toggleFeature() {
   removeEventListeners()
 
   let clickedFeature = this.dataset.feature;
-  document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
+  document.querySelectorAll(`.${clickedFeature}.available`).forEach((element) => {
     element.style.opacity = 0.7;
   });
 
 
-  document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
-    /* if (element.dataset.feature != this.dataset.feature) { */
-
+  document.querySelectorAll(`.${clickedFeature}.available`).forEach((element) => {
     element.dataset.feature = this.dataset.feature;
-
     document.querySelector("#product-preview").style.zIndex = -1;
-    /* elementsToPaint.push(element); */
     element.addEventListener("click", togglePlacement);
-
-    /* } */
   });
 
   this.removeEventListener("click", toggleFeature);
-  this.addEventListener("click", featureOff);
-  /* this.removeEventListener("mouseover", optionHover);
-      element.removeEventListener("mouseout", notHovering); */
 }
 
-function hoverPlacements() {
-  console.log(`hovering: ${this.id}`);
-  let id = this.id;
-
-  document.querySelectorAll(`#${id}`).forEach((path) => {
-    const pulseAnimation = path.animate(
-      [
-        {
-          fill: "white",
-        },
-        {
-          fill: "#C7C7C7",
-        },
-        {
-          fill: "white",
-        },
-      ],
-      {
-        iterations: Infinity,
-        duration: 1500,
-        easing: "ease-in",
-      }
-    );
-    path.addEventListener("mouseout", stopPulse);
-    function stopPulse() {
-      pulseAnimation.cancel();
-    }
-  });
-}
-
-function featureOff() {
-  this.style.backgroundColor = "white";
-
-  let clickedFeature = this.dataset.feature;
-  document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
-    element.style.opacity = 0;
-  });
-  this.addEventListener("click", toggleFeature);
-  this.removeEventListener("click", featureOff);
-
-  document.querySelectorAll("[data-feature]").forEach((element) => {
-    /* if (element.dataset.feature != this.dataset.feature) { */
-    element.addEventListener("mouseover", optionHover);
-    element.addEventListener("mouseout", notHovering);
-    element.addEventListener("click", toggleFeature);
-
-    /* } */
-  });
-}
 function optionHover(event) {
   let hoveredOption = this.dataset.feature;
 
@@ -146,9 +78,14 @@ function notHovering() {
 }
 
 function togglePlacement() {
-  showColorPalette(this);
+  if (nonConfigurableFeatures.includes(this.dataset.feature)) {
+    this.style.opacity = '1'
+    toggleOption(this, null)
+    addEventListeners()
+  }
+  else showColorPalette(this)
   this.classList.remove('available')
-  document.querySelectorAll('.available path').forEach(path => path.style.opacity = '0')
+  document.querySelectorAll('.available').forEach(element => element.style.opacity = '0')
 }
 
 function showColorPalette(element) {
@@ -159,7 +96,9 @@ function showColorPalette(element) {
   const colorPickerDiv = document.querySelector(".color_options");
   const input = colorPickerDiv.querySelector('input')
   input.addEventListener('input', () => {
-    document.querySelectorAll(`#${id} > *`).forEach(path => path.style.fill = document.querySelector("#colorchoice").value)
+    const g = document.querySelector(`#${id}`)
+    g.style.opacity = '1'
+    g.querySelectorAll('*').forEach(element => element.style.fill = document.querySelector("#colorchoice").value)
   })
   const button = colorPickerDiv.querySelector('button')
   button.addEventListener('click', () => {
@@ -179,40 +118,41 @@ function showColorPalette(element) {
 async function toggleOption(element, color) {
   const feature = element.dataset.feature;
 
-  features[feature] = !features[feature];
+  document.querySelectorAll(`.${feature}.available`).forEach((element) => {
+    element.removeEventListener("click", togglePlacement);
+  });
+  
+  let featureElement = await createFeatureElement(element, color);
 
-  if (features[feature]) {
-    let featureElement = await createFeatureElement(element, color);
+  document.querySelector("#selected ul").append(featureElement);
+  let firstPos = element.getBoundingClientRect();
+  let lastPos = featureElement.getBoundingClientRect();
 
-    document.querySelector("#selected ul").append(featureElement);
-    let firstPos = element.getBoundingClientRect();
-    let lastPos = featureElement.getBoundingClientRect();
+  const deltaX = firstPos.left - lastPos.left;
+  const deltaY = firstPos.top - lastPos.top;
+  const deltaW = firstPos.width / lastPos.width;
+  const deltaH = firstPos.height / lastPos.height;
 
-    const deltaX = firstPos.left - lastPos.left;
-    const deltaY = firstPos.top - lastPos.top;
-    const deltaW = firstPos.width / lastPos.width;
-    const deltaH = firstPos.height / lastPos.height;
-
-    featureElement.animate(
-      [
-        {
-          transformOrigin: "top left",
-          transform: `
-        translate(${deltaX}px, ${deltaY}px)
-      `,
-        },
-        {
-          transformOrigin: "top left",
-          transform: "none",
-        },
-      ],
+  featureElement.animate(
+    [
       {
-        duration: 900,
-        easing: "ease-in-out",
-        fill: "both",
-      }
-    );
-  }
+        transformOrigin: "top left",
+        transform: `
+      translate(${deltaX}px, ${deltaY}px)
+    `,
+      },
+      {
+        transformOrigin: "top left",
+        transform: "none",
+      },
+    ],
+    {
+      duration: 900,
+      easing: "ease-in-out",
+      fill: "both",
+    }
+  );
+
   document.querySelectorAll("ul li").forEach((element) => {
     element.addEventListener("click", () => {
       // feature removed
@@ -257,6 +197,7 @@ async function createFeatureElement(element, color) {
 
   const li = document.createElement("li");
   li.dataset.feature = feature
+  li.dataset.feature_id = element.id
 
   const response = await fetch(`images/${feature}.svg`)
   const svgData = await response.text()
@@ -266,14 +207,19 @@ async function createFeatureElement(element, color) {
   svgWrapper.classList.add('selected_feature')
 
   svgWrapper.innerHTML = svgData
+  
+  li.addEventListener('click', function () {
+    document.querySelectorAll(`#${this.dataset.feature_id}`).forEach(element => {
+      element.classList.add('available')
+      element.style.opacity = '0'
+    })
+    this.remove()
+  })
 
-  svgWrapper.querySelectorAll('*').forEach(path => path.style.fill = color)
-
+  if (color) svgWrapper.querySelectorAll('*').forEach(element => element.style.fill = color)
+  
   li.append(svgWrapper);
 
   return li;
 }
 
-function capitalize(text) {
-  return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
-}

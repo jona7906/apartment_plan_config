@@ -24,7 +24,6 @@ section#house_section {
   grid-area: product;
 }
 
-
 #product-preview img {
   position: absolute;
   width: 100%;
@@ -120,25 +119,7 @@ section#house_section {
   background-color: #aaa;
 }
 
-
-.color_options{
-  position: absolute;
-  display: block;
-  z-index: 1;
-  background-color: green;
-  width: 200px;
-  height: 200px;
-}
-/* Animation classes */
-
-/* .animate-feature-in { */
-/* TODO: Create animation for adding a feature */
-/* } */
-
-/* .animate-feature-out { */
-/* TODO: Create animation for removing a feature */
-/* } */
-
 .selected_feature {
   width: 100px;
+  cursor: pointer;
 }
