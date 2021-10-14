@@ -128,26 +128,27 @@ function showColorPalette(id) {
   color_div.style.top = thisObject.y + "px";
   color_div.style.left = `${thisObject.left}px`;
 
-  /*  const li = document.createElement("li");
-  li.dataset.feature = "colors";
+  chooseColor();
+  function chooseColor() {
+    document.querySelector("#colorchoice").addEventListener("input", () => {
+      console.log("hello");
+      document.querySelectorAll(`#${id} path`).forEach((path) => {
+        path.style.fill = getCursorColor();
+      });
+    });
+  }
+}
 
-
-  document.querySelector(`#${id}`).append(li); */
-  /*  let placedObject = []; */
-  document.querySelectorAll(`#${id} path`).forEach((path) => {
-    /*  let newPath = document.createElement("path");
-    newPath.d = path;
-    placedObject.push(newPath); */
-
-    path.style.fill = "green";
-  });
-  /* console.log(placedObject);
-  return id; */
+function getCursorColor() {
+  let colorInput = document.querySelector("#colorchoice");
+  colorInput = colorInput.value;
+  console.log(colorInput);
+  return colorInput;
 }
 
 function toggleOption(event) {
   showColorPalette(this.id);
-  colorElement(this.id);
+  /* colorElement(this.id); */
   /* console.log(this.id);
   let chosenPlacement = createPlacedElement(this.id); */
   const target = event.currentTarget;
