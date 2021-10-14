@@ -56,6 +56,7 @@ function toggleFeature(event) {
     document.querySelector("#product-preview").style.zIndex = -1;
     elementsToPaint.push(element);
     element.addEventListener("click", toggleOption);
+    element.addEventListener("mouseover", hoverPlacements);
     console.log(elementsToPaint);
     /* } */
   });
@@ -64,6 +65,37 @@ function toggleFeature(event) {
   this.addEventListener("click", featureOff);
   /* this.removeEventListener("mouseover", optionHover);
       element.removeEventListener("mouseout", notHovering); */
+}
+
+function hoverPlacements() {
+  console.log(`hovering: ${this.id}`);
+  let id = this.id;
+  // this.animate([{ transform: "scale(1.3" }]);
+
+  document.querySelectorAll(`#${id}`).forEach((path) => {
+    const pulseAnimation = path.animate(
+      [
+        {
+          fill: "white",
+        },
+        {
+          fill: "#C7C7C7",
+        },
+        {
+          fill: "white",
+        },
+      ],
+      {
+        iterations: Infinity,
+        duration: 1500,
+        easing: "ease-in",
+      }
+    );
+    path.addEventListener("mouseout", stopPulse);
+    function stopPulse() {
+      pulseAnimation.cancel();
+    }
+  });
 }
 
 function featureOff() {
