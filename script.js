@@ -45,16 +45,6 @@ function optionHover(event) {
   });
   this.removeEventListener("mouseover", optionHover);
   this.addEventListener("mouseout", notHovering);
-
-  /* this.addEventListener("mouseout", ()=>{}); */
-  // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
-  //   element.style.opacity = 0;
-  // document.querySelectorAll("#sofa-2 path").forEach((element) => {
-  //   element.style.fill = "green";
-  // });
-  /* document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
-    element.style.opacity = 0;
-  }); */
 }
 
 function notHovering() {
@@ -135,7 +125,8 @@ function toggleOption(event) {
     // - find the existing featureElement in #selected ul
     // - create FLIP-animation to animate featureElement to img in target
     // - when animation is complete, remove featureElement from the DOM
-  } else {
+  }
+  target.addEventListener("click", () => {
     // feature removed
     console.log(`Feature ${feature} is turned off!`);
     target.classList.remove("chosen");
@@ -174,7 +165,7 @@ function toggleOption(event) {
     );
     existingElement.remove();
     // TODO: More code
-  }
+  });
 }
 
 // Create featureElement to be appended to #selected ul - could have used a <template> instead
