@@ -23,12 +23,12 @@ section {
   grid-area: product;
 }
 
-#product-preview {
+/* #product-preview {
   grid-area: product;
   position: relative;
   transition: opacity ease-in 0.5s;
   width: 25vw;
-}
+} */
 
 #product-preview img {
   position: absolute;
@@ -115,6 +115,15 @@ section {
   background-color: #aaa;
 }
 
+
+.color_options{
+  position: absolute;
+  display: block;
+  z-index: 1;
+  background-color: green;
+  width: 200px;
+  height: 200px;
+}
 /* Animation classes */
 
 /* .animate-feature-in { */

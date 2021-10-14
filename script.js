@@ -50,13 +50,13 @@ function toggleFeature(event) {
 
   document.querySelectorAll(`.couch`).forEach((element) => {
     /* if (element.dataset.feature != this.dataset.feature) { */
-    console.log("hey");
+
     element.dataset.feature = this.dataset.feature;
 
     document.querySelector("#product-preview").style.zIndex = -1;
-    elementsToPaint.push(element);
+    /* elementsToPaint.push(element); */
     element.addEventListener("click", toggleOption);
-    console.log(elementsToPaint);
+
     /* } */
   });
 
@@ -118,9 +118,36 @@ function notHovering() {
 //   document.querySelector("#popup").offset({ top: pageY, left: pageX }).fadeIn();
 // }
 
-function createPlacedElement(id) {}
+function showColorPalette(id) {
+  let template = document.querySelector("template");
+  let colors = template.content.cloneNode(true);
+  document.body.appendChild(colors);
+  console.log(colors);
+  let thisObject = document.querySelector(`#${id}`).getBoundingClientRect();
+  let color_div = document.querySelector(".color_options");
+  color_div.style.top = thisObject.y + "px";
+  color_div.style.left = `${thisObject.left}px`;
+
+  /*  const li = document.createElement("li");
+  li.dataset.feature = "colors";
+
+
+  document.querySelector(`#${id}`).append(li); */
+  /*  let placedObject = []; */
+  document.querySelectorAll(`#${id} path`).forEach((path) => {
+    /*  let newPath = document.createElement("path");
+    newPath.d = path;
+    placedObject.push(newPath); */
+
+    path.style.fill = "green";
+  });
+  /* console.log(placedObject);
+  return id; */
+}
 
 function toggleOption(event) {
+  showColorPalette(this.id);
+  colorElement(this.id);
   /* console.log(this.id);
   let chosenPlacement = createPlacedElement(this.id); */
   const target = event.currentTarget;
@@ -168,10 +195,8 @@ function toggleOption(event) {
       }
     );
   }
-  /* else */ document.querySelectorAll("ul li").forEach((element) => {
+  document.querySelectorAll("ul li").forEach((element) => {
     element.addEventListener("click", () => {
-      /*  console.log(event.currentTarget.dataset.feature); */
-
       // feature removed
       console.log(`Feature ${feature} is turned off!`);
       target.classList.remove("chosen");
