@@ -35,11 +35,20 @@ function manipulateSVG() {
   });
 }
 
+<<<<<<< HEAD
 function addEventListeners () {
   document.querySelectorAll("[data-feature]").forEach((element) => {
     element.addEventListener("mouseover", optionHover);
     element.addEventListener("mouseout", notHovering);
     element.addEventListener("click", toggleFeature);
+=======
+function toggleFeature(event) {
+  this.style.backgroundColor = "#ddd";
+
+  let clickedFeature = this.dataset.feature;
+  document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
+    element.style.opacity = 0.7;
+>>>>>>> 1bfac344c0a9927ecf2044af87cd22a5d181edb2
   });
 }
 
@@ -67,7 +76,12 @@ function toggleFeature() {
 
     document.querySelector("#product-preview").style.zIndex = -1;
     /* elementsToPaint.push(element); */
+<<<<<<< HEAD
     element.addEventListener("click", togglePlacement);
+=======
+    element.addEventListener("mouseover", hoverPlacements);
+    element.addEventListener("click", toggleOption);
+>>>>>>> 1bfac344c0a9927ecf2044af87cd22a5d181edb2
 
     /* } */
   });
@@ -78,7 +92,39 @@ function toggleFeature() {
       element.removeEventListener("mouseout", notHovering); */
 }
 
+function hoverPlacements() {
+  console.log(`hovering: ${this.id}`);
+  let id = this.id;
+
+  document.querySelectorAll(`#${id}`).forEach((path) => {
+    const pulseAnimation = path.animate(
+      [
+        {
+          fill: "white",
+        },
+        {
+          fill: "#C7C7C7",
+        },
+        {
+          fill: "white",
+        },
+      ],
+      {
+        iterations: Infinity,
+        duration: 1500,
+        easing: "ease-in",
+      }
+    );
+    path.addEventListener("mouseout", stopPulse);
+    function stopPulse() {
+      pulseAnimation.cancel();
+    }
+  });
+}
+
 function featureOff() {
+  this.style.backgroundColor = "white";
+
   let clickedFeature = this.dataset.feature;
   document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
     element.style.opacity = 0;
