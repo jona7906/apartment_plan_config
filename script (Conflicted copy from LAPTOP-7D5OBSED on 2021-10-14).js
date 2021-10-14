@@ -52,11 +52,9 @@ function toggleFeature(event) {
     /* if (element.dataset.feature != this.dataset.feature) { */
     console.log("hey");
     element.dataset.feature = this.dataset.feature;
-
+    element.style.position = "absolute";
     document.querySelector("#product-preview").style.zIndex = -1;
-    elementsToPaint.push(element);
     element.addEventListener("click", toggleOption);
-    console.log(elementsToPaint);
     /* } */
   });
 
@@ -118,11 +116,7 @@ function notHovering() {
 //   document.querySelector("#popup").offset({ top: pageY, left: pageX }).fadeIn();
 // }
 
-function createPlacedElement(id) {}
-
 function toggleOption(event) {
-  /* console.log(this.id);
-  let chosenPlacement = createPlacedElement(this.id); */
   const target = event.currentTarget;
   const feature = target.dataset.feature;
 
