@@ -175,8 +175,12 @@ function capitalize(text) {
   return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
 }
 
-function pickPart(event) {
-  const elements = document.querySelectorAll(`#${event.target.datafeature}`);
+// function pickPart(event) {
+//   let part = createFeatureElement(event.currentTarget.dataset.feature);
+//   if (event.currentTarget.dataset.feature === "couch") {
+//     elementsToPaint.push(part);
+//     console.log("elementsToPaint", elementsToPaint);
+//   }
+// }
 
-  console.log("elements", elements);
-}
+function pickPart(event) {}
