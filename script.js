@@ -20,6 +20,8 @@ async function start() {
   document.querySelector("section").innerHTML = svgData;
   manipulateSVG();
   document.querySelectorAll(".option").forEach((option) => option.addEventListener("click", toggleOption));
+  document.querySelectorAll(".option").forEach((option) => option.addEventListener("click", pickPart));
+
   document.querySelectorAll("[data-feature]").forEach((option) => {
     option.addEventListener("mouseover", optionHover);
   });
@@ -35,8 +37,6 @@ function manipulateSVG() {
 }
 
 function optionHover(event) {
-  console.log(this);
-  console.log(event);
   let hoveredOption = this.dataset.feature;
 
   document.querySelectorAll(`.${hoveredOption}`).forEach((element) => {
@@ -73,7 +73,6 @@ function toggleOption(event) {
   const target = event.currentTarget;
   const feature = target.dataset.feature;
 
-
   features[feature] = !features[feature];
 
   if (features[feature]) {
@@ -83,7 +82,6 @@ function toggleOption(event) {
     //remover hide fra den
     document.querySelector(`[data-feature*="${feature}"]`).classList.remove("hide");
     let featureElement = createFeatureElement(feature);
-    console.log("featureElement:", featureElement);
 
     document.querySelector("#selected ul").append(featureElement);
     let firstPos = target.getBoundingClientRect();
@@ -115,8 +113,6 @@ function toggleOption(event) {
         fill: "both",
       }
     );
-
-
   } else {
     // feature removed
     console.log(`Feature ${feature} is turned off!`);
@@ -126,8 +122,6 @@ function toggleOption(event) {
     let existingElement = document.querySelector(`#selected ul [data-feature*="${feature}"]`);
     let firstPos = existingElement.getBoundingClientRect();
     let lastPos = target.getBoundingClientRect();
-    console.log("firstPos:", firstPos);
-    console.log("lastPos:", lastPos);
 
     const deltaX = firstPos.left - lastPos.left;
     const deltaY = firstPos.top - lastPos.top;
@@ -157,7 +151,6 @@ function toggleOption(event) {
   }
 }
 
-
 function createFeatureElement(feature) {
   const li = document.createElement("li");
   li.dataset.feature = feature;
@@ -173,4 +166,10 @@ function createFeatureElement(feature) {
 
 function capitalize(text) {
   return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
+}
+
+function pickPart(event) {
+  const elements = document.querySelectorAll(`#${event.target.datafeature}`);
+
+  console.log("elements", elements);
 }
