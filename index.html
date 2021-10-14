@@ -8,15 +8,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>Apartment Configurator</h1>
-    <p>
-      Welcome to the apartment-configurator!<br />
-      1. Select between the different options. <br />
-      2. Click on a highlighted area, to place the furniture. <br />
-      3. Change color of the selected furniture.
-    </p>
+    <div id="introText">
+      <h1>Apartment Configurator</h1>
+      <br />
+      <p>
+        Welcome to the apartment-configurator!<br />
+        1. Select between the different options. <br />
+        2. Click on a highlighted area, to place the furniture. <br />
+        3. Change color of the selected furniture.
+      </p>
+    </div>
 
     <div id="configurator">
+      <div id="popup">
+        Change color: <br />
+        <input type="color" id="colorInput" />
+      </div>
       <section></section>
       <div id="product-preview">
         <!-- TODO: add all feature image layers -->
@@ -47,8 +54,8 @@
           <img src="images/stove.svg" alt="stove" />
           <figcaption>Stove</figcaption>
         </figure>
-        <figure class="option" data-feature="kitchenSink">
-          <img src="images/kitchenWash.svg" alt="kitchenSink" />
+        <figure class="option" data-feature="kitchenWash">
+          <img src="images/kitchenWash.svg" alt="kitchenWash" />
           <figcaption>Kitchen sink</figcaption>
         </figure>
         <figure class="option" data-feature="bigCarpet">

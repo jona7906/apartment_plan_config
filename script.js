@@ -1,6 +1,5 @@
 "use strict";
 
-// The model of all features
 const features = {
   couch: false,
   tv: false,
@@ -45,26 +44,34 @@ function optionHover(event) {
   });
   this.removeEventListener("mouseover", optionHover);
   this.addEventListener("mouseout", notHovering);
+
+  /* this.addEventListener("mouseout", ()=>{}); */
+  // document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #handwash-1)`).forEach((element) => {
+  //   element.style.opacity = 0;
+  // document.querySelectorAll("#sofa-2 path").forEach((element) => {
+  //   element.style.fill = "green";
+  // });
+  /* document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
+    element.style.opacity = 0;
+  }); */
 }
 
 function notHovering() {
+  this.removeEventListener("mouseout", notHovering);
+  this.addEventListener("mouseover", optionHover);
   document.querySelectorAll(`svg > g:not(#background, #toilet, #toilet-2, #wash-4, #wash-3)`).forEach((element) => {
     element.style.opacity = 0;
+    // element.addEventListener("mousedown", showPopup());
   });
-  this.addEventListener("mouseover", optionHover);
-  this.removeEventListener("mouseout", notHovering);
 }
+
+// function showPopup() {
+//   document.querySelector("#popup").offset({ top: pageY, left: pageX }).fadeIn();
+// }
 
 function toggleOption(event) {
   const target = event.currentTarget;
   const feature = target.dataset.feature;
-  // TODO: Toggle feature in "model"
-  // If feature is (now) turned on:
-  // - mark target as chosen (add class "chosen")
-  // - un-hide the feature-layer(s) in the #product-preview;
-  // - create featureElement and append to #selected ul
-  // - create FLIP-animation to animate featureElement from img in target, to
-  //   its intended position. Do it with normal animation or transition class!
 
   features[feature] = !features[feature];
 
@@ -94,7 +101,6 @@ function toggleOption(event) {
           transformOrigin: "top left",
           transform: `
         translate(${deltaX}px, ${deltaY}px)
-        scale(${deltaW}, ${deltaH})
       `,
         },
         {
@@ -108,67 +114,51 @@ function toggleOption(event) {
         fill: "both",
       }
     );
-    // console.log("deltaX:", deltaX, "deltaY:", deltaY)
-
-    // const valgtFeature = document.querySelector(`#${feature}`)
-    // console.log("valgt", valgtFeature)
-    // document.querySelectorAll(`${feature}`).forEach(element => {
-    //   element.classList.remove("hide")
-
-    // });
-
-    // TODO: More code
-
-    // Else - if the feature (became) turned off:
-    // - no longer mark target as chosen
-    // - hide the feature-layer(s) in the #product-preview
-    // - find the existing featureElement in #selected ul
-    // - create FLIP-animation to animate featureElement to img in target
-    // - when animation is complete, remove featureElement from the DOM
   }
-  target.addEventListener("click", () => {
-    // feature removed
-    console.log(`Feature ${feature} is turned off!`);
-    target.classList.remove("chosen");
+  /* else */ document.querySelectorAll("ul li").forEach((element) => {
+    element.addEventListener("click", () => {
+      /*  console.log(event.currentTarget.dataset.feature); */
 
-    document.querySelector(`[data-feature*="${feature}"]`).classList.add("hide");
-    let existingElement = document.querySelector(`#selected ul [data-feature*="${feature}"]`);
-    let firstPos = existingElement.getBoundingClientRect();
-    let lastPos = target.getBoundingClientRect();
-    console.log("firstPos:", firstPos);
-    console.log("lastPos:", lastPos);
+      // feature removed
+      console.log(`Feature ${feature} is turned off!`);
+      target.classList.remove("chosen");
 
-    const deltaX = firstPos.left - lastPos.left;
-    const deltaY = firstPos.top - lastPos.top;
-    const deltaW = firstPos.width / lastPos.width;
-    const deltaH = firstPos.height / lastPos.height;
+      document.querySelector(`[data-feature*="${feature}"]`).classList.add("hide");
+      let existingElement = document.querySelector(`#selected ul [data-feature*="${feature}"]`);
+      let firstPos = existingElement.getBoundingClientRect();
+      let lastPos = target.getBoundingClientRect();
+      console.log("firstPos:", firstPos);
+      console.log("lastPos:", lastPos);
 
-    target.animate(
-      [
-        {
-          transformOrigin: "top left",
-          transform: `
+      const deltaX = firstPos.left - lastPos.left;
+      const deltaY = firstPos.top - lastPos.top;
+      const deltaW = firstPos.width / lastPos.width;
+      const deltaH = firstPos.height / lastPos.height;
+
+      this.animate(
+        [
+          {
+            transformOrigin: "top left",
+            transform: `
         translate(${deltaX}px, ${deltaY}px)
-        scale(${deltaW}, ${deltaH})
       `,
-        },
+          },
+          {
+            transformOrigin: "top left",
+            transform: "none",
+          },
+        ],
         {
-          transformOrigin: "top left",
-          transform: "none",
-        },
-      ],
-      {
-        duration: 900,
-        easing: "ease-in-out",
-        fill: "both",
-      }
-    );
-    existingElement.remove();
-    // TODO: More code
+          duration: 900,
+          easing: "ease-in-out",
+          fill: "both",
+        }
+      );
+      existingElement.remove();
+    });
   });
 }
 
-// Create featureElement to be appended to #selected ul - could have used a <template> instead
 function createFeatureElement(feature) {
   const li = document.createElement("li");
   li.dataset.feature = feature;
