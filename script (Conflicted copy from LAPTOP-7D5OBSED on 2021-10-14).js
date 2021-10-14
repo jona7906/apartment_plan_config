@@ -52,11 +52,9 @@ function toggleFeature(event) {
     /* if (element.dataset.feature != this.dataset.feature) { */
     console.log("hey");
     element.dataset.feature = this.dataset.feature;
-
+    element.style.position = "absolute";
     document.querySelector("#product-preview").style.zIndex = -1;
-    elementsToPaint.push(element);
     element.addEventListener("click", toggleOption);
-    console.log(elementsToPaint);
     /* } */
   });
 
@@ -84,6 +82,8 @@ function featureOff() {
   });
 }
 function optionHover(event) {
+  console.log(this);
+  console.log(event);
   let hoveredOption = this.dataset.feature;
 
   document.querySelectorAll(`.${hoveredOption}`).forEach((element) => {
@@ -116,11 +116,7 @@ function notHovering() {
 //   document.querySelector("#popup").offset({ top: pageY, left: pageX }).fadeIn();
 // }
 
-function createPlacedElement(id) {}
-
 function toggleOption(event) {
-  /* console.log(this.id);
-  let chosenPlacement = createPlacedElement(this.id); */
   const target = event.currentTarget;
   const feature = target.dataset.feature;
 
@@ -133,6 +129,7 @@ function toggleOption(event) {
     //remover hide fra den
     document.querySelector(`[data-feature*="${feature}"]`).classList.remove("hide");
     let featureElement = createFeatureElement(feature);
+    console.log("featureElement:", featureElement);
 
     document.querySelector("#selected ul").append(featureElement);
     let firstPos = target.getBoundingClientRect();
@@ -225,13 +222,3 @@ function createFeatureElement(feature) {
 function capitalize(text) {
   return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
 }
-
-// function pickPart(event) {
-//   let part = createFeatureElement(event.currentTarget.dataset.feature);
-//   if (event.currentTarget.dataset.feature === "couch") {
-//     elementsToPaint.push(part);
-//     console.log("elementsToPaint", elementsToPaint);
-//   }
-// }
-
-function pickPart(event) {}
