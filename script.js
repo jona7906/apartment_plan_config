@@ -35,8 +35,8 @@ function manipulateSVG() {
 }
 
 function optionHover(event) {
-  console.log(this);
-  console.log(event);
+  // console.log(this);
+  // console.log(event);
   let hoveredOption = this.dataset.feature;
 
   document.querySelectorAll(`.${hoveredOption}`).forEach((element) => {
@@ -72,7 +72,6 @@ function notHovering() {
 function toggleOption(event) {
   const target = event.currentTarget;
   const feature = target.dataset.feature;
-
 
   features[feature] = !features[feature];
 
@@ -115,8 +114,6 @@ function toggleOption(event) {
         fill: "both",
       }
     );
-
-
   } else {
     // feature removed
     console.log(`Feature ${feature} is turned off!`);
@@ -156,7 +153,6 @@ function toggleOption(event) {
     existingElement.remove();
   }
 }
-
 
 function createFeatureElement(feature) {
   const li = document.createElement("li");
