@@ -19,7 +19,8 @@ figcaption {
   margin-top: 5%;
 }
 
-section {
+section#house_section {
+  position: relative;
   grid-area: product;
 }
 
@@ -55,6 +56,16 @@ section {
   justify-content: flex-start;
   overflow: scroll;
   height: 40vw;
+}
+
+.color_options {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+.color_options button {
+  cursor: pointer;
 }
 
 #options p {
@@ -128,3 +139,7 @@ section {
 /* .animate-feature-out { */
 /* TODO: Create animation for removing a feature */
 /* } */
+
+.selected_feature {
+  width: 100px;
+}
