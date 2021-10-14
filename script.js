@@ -36,6 +36,8 @@ function manipulateSVG() {
 }
 
 function toggleFeature(event) {
+  this.style.backgroundColor = "#ddd";
+
   let clickedFeature = this.dataset.feature;
   document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
     element.style.opacity = 0.7;
@@ -70,7 +72,6 @@ function toggleFeature(event) {
 function hoverPlacements() {
   console.log(`hovering: ${this.id}`);
   let id = this.id;
-  // this.animate([{ transform: "scale(1.3" }]);
 
   document.querySelectorAll(`#${id}`).forEach((path) => {
     const pulseAnimation = path.animate(
@@ -99,6 +100,8 @@ function hoverPlacements() {
 }
 
 function featureOff() {
+  this.style.backgroundColor = "white";
+
   let clickedFeature = this.dataset.feature;
   document.querySelectorAll(`.${clickedFeature}`).forEach((element) => {
     element.style.opacity = 0;
