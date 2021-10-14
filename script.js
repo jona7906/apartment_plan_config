@@ -114,44 +114,49 @@ function toggleOption(event) {
         fill: "both",
       }
     );
-  } else {
-    // feature removed
-    console.log(`Feature ${feature} is turned off!`);
-    target.classList.remove("chosen");
+  }
+  /* else */ document.querySelectorAll("ul li").forEach((element) => {
+    element.addEventListener("click", () => {
+      /*  console.log(event.currentTarget.dataset.feature); */
 
-    document.querySelector(`[data-feature*="${feature}"]`).classList.add("hide");
-    let existingElement = document.querySelector(`#selected ul [data-feature*="${feature}"]`);
-    let firstPos = existingElement.getBoundingClientRect();
-    let lastPos = target.getBoundingClientRect();
-    console.log("firstPos:", firstPos);
-    console.log("lastPos:", lastPos);
+      // feature removed
+      console.log(`Feature ${feature} is turned off!`);
+      target.classList.remove("chosen");
 
-    const deltaX = firstPos.left - lastPos.left;
-    const deltaY = firstPos.top - lastPos.top;
-    const deltaW = firstPos.width / lastPos.width;
-    const deltaH = firstPos.height / lastPos.height;
+      document.querySelector(`[data-feature*="${feature}"]`).classList.add("hide");
+      let existingElement = document.querySelector(`#selected ul [data-feature*="${feature}"]`);
+      let firstPos = existingElement.getBoundingClientRect();
+      let lastPos = target.getBoundingClientRect();
+      console.log("firstPos:", firstPos);
+      console.log("lastPos:", lastPos);
 
-    target.animate(
-      [
-        {
-          transformOrigin: "top left",
-          transform: `
+      const deltaX = firstPos.left - lastPos.left;
+      const deltaY = firstPos.top - lastPos.top;
+      const deltaW = firstPos.width / lastPos.width;
+      const deltaH = firstPos.height / lastPos.height;
+
+      this.animate(
+        [
+          {
+            transformOrigin: "top left",
+            transform: `
         translate(${deltaX}px, ${deltaY}px)
       `,
-        },
+          },
+          {
+            transformOrigin: "top left",
+            transform: "none",
+          },
+        ],
         {
-          transformOrigin: "top left",
-          transform: "none",
-        },
-      ],
-      {
-        duration: 900,
-        easing: "ease-in-out",
-        fill: "both",
-      }
-    );
-    existingElement.remove();
-  }
+          duration: 900,
+          easing: "ease-in-out",
+          fill: "both",
+        }
+      );
+      existingElement.remove();
+    });
+  });
 }
 
 function createFeatureElement(feature) {
