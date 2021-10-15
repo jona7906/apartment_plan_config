@@ -159,35 +159,7 @@ async function toggleOption(element, color) {
       element.classList.remove("chosen");
 
       document.querySelector(`[data-feature*="${feature}"]`).classList.add("hide");
-      let existingElement = document.querySelector(`#selected ul [data-feature*="${feature}"]`);
-      let firstPos = existingElement.getBoundingClientRect();
-      let lastPos = element.getBoundingClientRect();
-
-      const deltaX = firstPos.left - lastPos.left;
-      const deltaY = firstPos.top - lastPos.top;
-      /*  const deltaW = firstPos.width / lastPos.width;
-      const deltaH = firstPos.height / lastPos.height; */
-
-      this.animate(
-        [
-          {
-            transformOrigin: "top left",
-            transform: `
-        translate(${deltaX}px, ${deltaY}px)
-      `,
-          },
-          {
-            transformOrigin: "top left",
-            transform: "none",
-          },
-        ],
-        {
-          duration: 900,
-          easing: "ease-in-out",
-          fill: "both",
-        }
-      );
-      existingElement.remove();
+ 
     });
   });
 }
