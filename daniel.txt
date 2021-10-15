@@ -1,6 +1,0 @@
-toggleFeature --> togglePlacement --> showColorPalette --> toggleOption
-
-
-toggleFeature er på alle grupper.
-
-toggleFeature tilføjer togglePlacement.
